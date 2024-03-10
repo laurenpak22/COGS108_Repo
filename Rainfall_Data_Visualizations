@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+
+# Data
+years = []
+values = []
+
+with open("data.txt", "r") as file:
+    for line in file:
+        line_data = line.strip().split(",")
+        years.append(int(line_data[0]))
+        values.append([float(value) for value in line_data[1:]])
+
+# Plotting
+plt.figure(figsize=(10, 6))
+
+for i in range(len(values[0])):
+    plt.plot(years, [value[i] for value in values], label=f'Value {i+1}')
+
+plt.xlabel('Year')
+plt.ylabel('Value')
+plt.title('Values Over Time')
+plt.legend()
+plt.grid(True)
+
+plt.show()
